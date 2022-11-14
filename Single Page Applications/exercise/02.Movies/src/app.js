@@ -2,6 +2,7 @@ import {homePage} from "./home.js";
 import {loginPage} from "./login.js";
 import {registerPage} from "./register.js";
 import {createPage} from "./create.js";
+import {updateNav} from "./util.js";
 
 const routes = {
     '/': homePage,
@@ -26,7 +27,9 @@ function navigate(evt) {
 }
 
 function logout() {
-    //todo
+    localStorage.removeItem('user');
+    updateNav();
 }
 
-homePage();
+updateNav();
+await homePage();

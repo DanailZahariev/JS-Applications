@@ -2,7 +2,6 @@ import {showView} from "./util.js";
 
 const homeSection = document.querySelector('#home-page');
 const catalog = homeSection.querySelector('#movie .card-deck.d-flex.justify-content-center');
-console.log(catalog);
 
 export async function homePage() {
     showView(homeSection);
