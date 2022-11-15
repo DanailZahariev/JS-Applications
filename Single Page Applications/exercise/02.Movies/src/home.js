@@ -1,7 +1,15 @@
 import {showView} from "./util.js";
+import {detailsPage} from "./details.js";
 
 const homeSection = document.querySelector('#home-page');
 const catalog = homeSection.querySelector('#movie .card-deck.d-flex.justify-content-center');
+catalog.addEventListener('click', async (event) => {
+    if (event.target.tagName === 'BUTTON') {
+        event.preventDefault();
+        const id = event.target.dataset.id;
+       await detailsPage(id);
+    }
+});
 
 export async function homePage() {
     showView(homeSection);
