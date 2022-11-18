@@ -1,23 +1,33 @@
-import {homePage} from "./pages/home.js";
+import {showHome} from "./pages/home.js";
+import {showCatalog} from "./pages/catalog.js";
+import {showLogin} from "./pages/login.js";
+import {showRegister} from "./pages/register.js";
+import {showDetails} from "./pages/details.js";
+import {showCreate} from "./pages/create.js";
+import {initialize} from "./router.js";
+import {logout} from "./api/users.js";
 
-const main = document.querySelector('main');
-
-const registerPage = document.getElementById('register-page');
-const loginPage = document.getElementById('login-page');
-const detailsPage = document.getElementById('details-page');
-const createPage = document.getElementById('create-page');
-const catalogPage = document.getElementById('dashboard-holder');
+document.getElementById('views').remove();
 
 const links = {
-    '/': homePage,
-    '/catalog': catalogPage,
-    '/login': loginPage,
-    '/register': registerPage,
-    '/detail': detailsPage,
-    '/create': createPage
+    '/': showHome,
+    '/catalog': showCatalog,
+    '/login': showLogin,
+    '/register': showRegister,
+    '/details': showDetails,
+    '/create': showCreate,
+    '/logout': onLogout
 };
 
+const router = initialize(links);
+router.updateNav();
 
+router.goTo('/');
 
+async function onLogout() {
+    await logout();
+    router.updateNav();
+    router.goTo('/');
+}
 
 
